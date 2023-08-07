@@ -1,24 +1,41 @@
-<!-- Loop over each object in the projects array -->
-{{#each projects as |project| }}
-<div class="row mb-4 project">
-  <div class="col-md-5">
-    <h2>
-      <!-- Call helper function with triple brackets to render the emoji span as HTML -->
-      {{{get_emoji}}}
-      <a href="/project/{{project.id}}">{{project.name}}</a>
-    </h2>
-    <p>
-      <span for="img" aria-label="money">💲</span>
-      <!-- Pass needed_funding value to the helper function -->
-      <span class="dollar-amount">{{format_amount project.needed_funding}}</span>
-      needed!
-    </p>
-    <p>Created by {{project.user.name}} on {{format_date project.date_created}}</p>
-  </div>
-  <div class="col-md-7">
-    <p>
-      {{project.description}}
-    </p>
-  </div>
-</div>
-{{/each}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>{{ pageTitle }}</title>
+</head>
+<body>
+    <header>
+        <img src="{{ bannerImageUrl }}" alt="TechExploro Banner">
+        <h1>{{ siteName }}</h1>
+        <p>{{ siteDescription }}</p>
+    </header>
+    
+    <nav>
+        <ul>
+            {{#each navItems}}
+            <li><a href="{{ url }}">{{ label }}</a></li>
+            {{/each}}
+        </ul>
+    </nav>
+    
+    <section class="content">
+        <h2>Tech Page</h2>
+        <p>Explore the latest in technology trends, innovations, and more.</p>
+        <!-- Your tech-related content goes here -->
+    </section>
+    
+    <footer>
+        <div class="social-media">
+            {{#each socialMediaLinks}}
+            <a href="{{ url }}">{{ platform }}</a>
+            {{/each}}
+        </div>
+        <div class="subscribe">
+            <a href="{{ newsletterUrl }}">Subscribe to Newsletter</a>
+        </div>
+    </footer>
+</body>
+</html>
