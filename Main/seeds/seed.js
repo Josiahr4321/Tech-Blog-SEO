@@ -1,8 +1,8 @@
 const sequelize = require('../config/connection');
 const { User, Project } = require('../models');
+
 const userData = require('./userData.json');
 const projectData = require('./projectData.json');
-const seeds = require('./seeds'); 
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -11,11 +11,6 @@ const seedDatabase = async () => {
     individualHooks: true,
     returning: true,
   });
-
-  const db = {
-    topics: seeds.topics,
-    articles: seeds.articles,
-  };
 
   for (const project of projectData) {
     await Project.create({
