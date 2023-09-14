@@ -1,0 +1,24 @@
+{{#each posts as |post|}}
+<section class="card col-6">
+  <div href="/post/{{id}}">
+    <header>{{username}} {{title}}</header>
+<h2>{{post_date}}</h2>  
+<h3>{{content}}</h3>
+<h5>{{comment}}</h5>
+</div>
+</section>
+{{/each}}
+
+<button class="btn new-post" value="New Post">+</button>
+
+
+
+
+
+<form method="POST" class="hide post-create">
+  <h1 class=".username-create">{{username}}</h1>
+  <input type="text" name="title" class="title-create">
+    <input type="text" name="content" class="content-create">
+
+<button class="btn post-create " type="submit" value="Create Post">Create Post</button>
+</form>
