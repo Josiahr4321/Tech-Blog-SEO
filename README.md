@@ -103,8 +103,11 @@ Contributing
 
 Contributions are welcome! Please follow our contributing guidelines to get started.
 
-License
+Links 
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+https://tech-blog-seo-d62d7c70148e.herokuapp.com
+
+https://github.com/Josiahr4321/Tech-Blog-SEO
+
 
 Images
