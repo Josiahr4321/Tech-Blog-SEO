@@ -111,3 +111,6 @@ https://github.com/Josiahr4321/Tech-Blog-SEO
 
 
 Images
+
+![image](https://github.com/Josiahr4321/Tech-Blog-SEO/assets/125624166/63585e3a-8e57-4cee-ad57-747212e1cdd0)
+
