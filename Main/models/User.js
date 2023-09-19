@@ -16,7 +16,7 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    username: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -28,18 +28,11 @@ User.init(
         isEmail: true,
       },
     },
-     password: {
+    password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
         len: [8],
-      },
-    },
-    post_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'post',
-        key: 'id',
       },
     },
   },

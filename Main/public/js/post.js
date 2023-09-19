@@ -1,40 +1,32 @@
-document.addEventListener('DOMContentLoaded', function() {
-
-    document.querySelector('.post-create').addEventListener('submit', async (event) => {
-      event.preventDefault();
+const commentFormHandler = async (event) => {
+    console.log("Comment form is being submitted!");
+    event.preventDefault();
   
-      const title = document.querySelector('.title-create').value.trim();
-      const content = document.querySelector('.content-create').value.trim();
-      
+    // Get the postId from the data-id attribute of the clicked button
+    const postId = document.querySelector('#comment-form').getAttribute('data-id');
+    const commentText = document.querySelector('#comment-text').value.trim();
+    console.log('Comment Data:', { text: commentText, postId });
   
-      if ( title && content) {
-        try {
-          const response = await fetch('/api/posts', {
-            method: 'POST',
-            body: JSON.stringify({title, content}),
-            headers: { 'Content-Type': 'application/json' },
-          });
+    if (commentText && postId) {
+      // Send a POST request to the create comment API endpoint
+      const response = await fetch(`/api/posts/${postId}/comments`, {
+        method: 'POST',
+        body: JSON.stringify({ text: commentText }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
   
-          if (response.ok) {
-            const newPost = await response.json();
-            console.log(newPost);
-            document.location.replace('/');
-          } else {
-            alert('Failed to create post.');
-          }
-        } catch (error) {
-          console.log('Error creating post:', error);
-          alert('Failed to create post. Please check the console for more details.');
-        }
+      if (response.ok) {
+        // If comment submission is successful, reload the page to display the new comment
+        document.location.reload();
+      } else {
+        alert('Failed to submit comment');
       }
-    });
-  });
-
+    }
+  };
   
-  document.querySelector(".new-post").addEventListener('click', async (event) => {
-    event.preventDefault(); 
-    const createPost = document.querySelector(".post-create")
-    const newPost = document.querySelector(".new-post")
-    createPost.classList.remove("hide")
-    newPost.classList.add("hide")
-  })
+  // Add event listener for comment form submission
+  document.querySelector('#comment-form').addEventListener('submit', commentFormHandler);
+  
+    

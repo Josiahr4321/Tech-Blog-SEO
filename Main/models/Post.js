@@ -1,5 +1,6 @@
-const { Model, DataTypes } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize');
 const sequelize = require('../config/connection');
+const moment = require('moment');
 
 class Post extends Model {}
 
@@ -11,24 +12,22 @@ Post.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    comment: {
-      type: DataTypes.STRING,
-    },
     content: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
-    post_date: {
+    date_created: {
       type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
+      allowNull: false,
+      defaultValue: Sequelize.NOW,
+      get() {
+        // Use moment to format the date
+        return moment(this.getDataValue('date_created')).format('MM/DD/YYYY, h:mm a');
+      },
     },
     user_id: {
       type: DataTypes.INTEGER,
